@@ -1,0 +1,59 @@
+<template>
+    <lightning-card  title="Select Month to Show Record">
+       <template if:true={dataTableShowRecord}>
+            <lightning-button  
+                icon-name="utility:download" 
+                label="Download CSV File" 
+                title="Download CSV File"
+                onclick={downloadCSVFile} 
+                variant="brand" 
+                slot="actions">
+            </lightning-button>
+        </template>
+        <div>
+            <lightning-combobox
+                name="progress"
+                class="slds-m-left_large my-input-field"
+                label="Month"
+                value={month}
+                placeholder="Select a Month"
+                options={picklistOptions}
+                onchange={handleChange}
+                variant="label-hidden"
+                required>
+            </lightning-combobox>
+        </div>
+        <div>
+            <p
+                class="slds-m-left_xx-large slds-m-top_x-small"
+                style='font-weight: bold; font-size:15px' >
+                Selected Month: {month}
+            </p>
+            <lightning-button
+                variant="brand" 
+                label="Show Record" 
+                title="Show Record"
+                onclick={handleClick} 
+                class=" slds-m-left_x-small slds-m-bottom_x-large slds-align_absolute-center ">
+            </lightning-button>
+        </div>
+        <div>
+            <lightning-datatable 
+                columns={columns} 
+                data={dataTableShowRecord}  
+                key-field="id"
+                hide-checkbox-column
+                >
+            </lightning-datatable>
+            <template if:true={dataTableShowRecord}>
+                <lightning-datatable 
+                    columns={totalSumColumns} 
+                    data={totalSumDataTable}  
+                    key-field="id"
+                    hide-checkbox-column
+                    style='font-weight: bold'>
+                </lightning-datatable>
+            </template>
+        </div>
+    </lightning-card>
+</template>

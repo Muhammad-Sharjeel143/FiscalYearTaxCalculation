@@ -1,0 +1,19 @@
+<!----LWC table and Download CSV button ------>
+ <template>
+    <lightning-card title="All Contacts Record History">     
+        <template if:true={wiredata}>
+            <lightning-button icon-name="utility:download" label="Download CSV" title="Download CSV File"
+                        onclick={downloadCSVFile} variant="brand" slot="actions"></lightning-button>
+            <div class="slds-m-around_medium"> 
+                <!-- Datatable component -->
+                 <lightning-datatable 
+                 columns={columns} 
+                 data={wiredata} 
+                 hide-checkbox-column="true" 
+                 key-field="id"
+                 >
+                </lightning-datatable>
+            </div>
+        </template>
+    </lightning-card>
+</template>

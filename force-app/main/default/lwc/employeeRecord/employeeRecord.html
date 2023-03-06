@@ -1,0 +1,66 @@
+<template>
+    <lightning-card  
+        title="Employee's Report">
+       <template 
+            if:true={dataTableShowRecord}>
+            <lightning-button  
+                icon-name="utility:download"
+                label="Download CSV" 
+                title="Download CSV File"
+                onclick={downloadCSVFile} 
+                variant="brand" 
+                slot="actions"
+                >
+            </lightning-button>
+        </template>
+        <div>
+            <lightning-record-edit-form 
+                object-api-name="Salary__c"
+                onchange={handleRecordChnage}> 
+                <lightning-input-field
+                    class="my-input-field slds-m-left_large"
+                    field-name ={fields.SALARY_CONTACT_NAME} 
+                    onchange ={handleNameChange} 
+                    title ={label.CONTACTLABEL}
+                    required>
+                </lightning-input-field>
+                <lightning-input-field
+                    class="my-input-field slds-m-left_large "  
+                    field-name ={fields.SALARY_YEAR_NAME} 
+                    onchange ={handleYearChange}
+                    title ={label.YEARLABEL}
+                    required>
+                </lightning-input-field>
+            </lightning-record-edit-form>          
+        </div>
+        <div>
+            <lightning-card>
+                <lightning-button
+                    class=" slds-m-left_x-small slds-m-bottom_x-large slds-align_absolute-center" 
+                    variant="brand" 
+                    label="Show Record" 
+                    title="Click to see Emplyees's Report" 
+                    onclick={handleClick} 
+                    >
+                </lightning-button>
+            </lightning-card>
+        </div>
+        <div>
+            <lightning-datatable 
+                columns={columns} 
+                data={dataTableShowRecord} 
+                hide-checkbox-column="true" 
+                key-field="id">
+            </lightning-datatable>
+            <template if:true={dataTableShowRecord}>
+                <lightning-datatable 
+                    columns={totalSumColumns} 
+                    data={totalSumDataTable}  
+                    key-field="id"
+                    hide-checkbox-column
+                    style='font-weight: bold'>
+                </lightning-datatable>
+            </template>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,29 @@
+<template>
+    <lightning-card title = "What do you want to do?">   
+        <lightning-combobox
+            name="progress"
+            class="slds-m-left_large my-input-field"
+            label="What do you want to do?"
+            value={value}
+            options={options}
+            onchange={handleChange}
+            placeholder="Select any Option"
+            variant="label-hidden" >
+        </lightning-combobox>
+        <template if:true={salaryInsertComponent}>
+            <lightning-card>
+                <c-create-contact-salary-insertion ></c-create-contact-salary-insertion>
+            </lightning-card>
+        </template>
+        <template if:true={salaryRecordComponent}>
+            <lightning-card>
+                <c-tax-monthly-report ></c-tax-monthly-report>
+            </lightning-card>
+        </template>
+        <template if:true={employeeRecordComponent}>
+            <lightning-card>
+                <c-employee-record></c-employee-record>
+            </lightning-card>
+        </template>
+    </lightning-card>
+</template>

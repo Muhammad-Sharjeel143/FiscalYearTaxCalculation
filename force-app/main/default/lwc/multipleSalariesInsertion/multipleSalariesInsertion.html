@@ -1,0 +1,47 @@
+<template>
+    <lightning-card>
+        <template for:each={itemList} for:item="item" for:index="index">
+            <lightning-record-edit-form key={item.id}   object-api-name="Salary__c">
+                <lightning-layout>
+                    <lightning-layout-item class=" slds-m-left_medium slds-m-right_small "   size="12" large-device-size="2" padding="around-small">
+                        <lightning-input-field  style="width: 270px; margin: 0px 10px 0px 5px;"  field-name ={label.ContactName} onchange={handleNameChange} required>
+                        </lightning-input-field>
+                    </lightning-layout-item>
+                    <lightning-layout-item  class="slds-m-left_small slds-m-right_small" size="12" large-device-size="2" padding="around-small">
+                        <lightning-input-field style="width: 270px; margin: 0px 10px 0px 10px;" field-name ={label.MonthName} onchange={handleMonthChange} required>
+                        </lightning-input-field>
+                    </lightning-layout-item>
+                    <lightning-layout-item class="slds-m-left_small slds-m-right_small "  size="12" large-device-size="2" padding="around-small">
+                        <lightning-input-field style="width: 270px; margin: 0px 10px 0px 15px;" field-name ={label.MonthSalary}  onchange={handleSalaryChange} required>
+                        </lightning-input-field>
+                    </lightning-layout-item>
+                    <lightning-layout-item class="slds-m-left_small slds-m-right_small "  size="12" large-device-size="2" padding="around-small">
+                        <lightning-input-field style="width: 270px; margin: 0px 10px 0px 15px;"  field-name ={label.YEAR}  onchange={handleYearChange} required>
+                        </lightning-input-field>
+                    </lightning-layout-item>
+                    <lightning-layout-item class="slds-m-left_medium slds-m-right_small  "   size="12" large-device-size="2" padding="around-small">
+                        <div class="slds-p-top_medium " style="margin: 0px 30px 0px 80px;">
+                            <lightning-icon   icon-name="action:new" access-key={item.id} id={index}
+                                 alternative-text="Add Row" size="small" 
+                                 onclick={addRow}>
+                            </lightning-icon>
+                            <lightning-layout-item   size="12" large-device-size="2" padding="around-small">
+                            <lightning-icon   icon-name="action:delete" access-key={item.id} id={index}
+                             alternative-text="Delete Row" size="small" data-index={index}
+                            onclick={removeRow}>
+                            </lightning-icon>
+                        </lightning-layout-item>
+                        </div>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </lightning-record-edit-form>
+        </template>
+        <lightning-layout>
+            <div class="slds-align_absolute-center">
+                <lightning-button onclick={handleSubmit} 
+                label="Submit" >
+                </lightning-button>
+            </div>
+        </lightning-layout>
+    </lightning-card>
+</template>
